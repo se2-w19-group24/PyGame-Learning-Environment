@@ -41,6 +41,31 @@ class WaterWorld(PyGameWrapper):
             "down": K_s
         }
 
+        if(num_creeps < 4):
+            print("Error: number of creeps is too low")
+            print("Using default values")
+            width=48
+            height=48
+            num_creeps=4
+        if(width != height):
+            print("Error: width and height do not match")
+            print("Using default values")
+            width=48
+            height=48
+            num_creeps=4
+        if(width < 32 or height < 32):
+            print("Error: window dimensions need to be above 0")
+            print("Using default values")
+            width=48
+            height=48
+            num_creeps=4
+        if(width > 1000 or height > 1000):
+            print("Error: window dimensions need to be below 1000")
+            print("Using default values")
+            width=48
+            height=48
+            num_creeps=4
+
         PyGameWrapper.__init__(self, width, height, actions=actions)
         self.BG_COLOR = (255, 255, 255)
         self.N_CREEPS = num_creeps
@@ -166,7 +191,9 @@ class WaterWorld(PyGameWrapper):
         """
             Return bool if the game has 'finished'
         """
-        return (self.creep_counts['GOOD'] == 0)
+        if(self.creep_counts['GOOD'] == 0):
+            print("game over")
+            return True
 
     def init(self):
         """

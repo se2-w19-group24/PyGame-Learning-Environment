@@ -136,6 +136,25 @@ class Catcher(base.PyGameWrapper):
             "right": K_d
         }
 
+        if(width != height):
+            print("Error: width and height do not match")
+            print("Using default values")
+            width=64
+            height=64
+            init_lives=3
+        if(width < 32 or height < 32 or init_lives <= 0):
+            print("Error: window dimensions and number of lives need to be above 0")
+            print("Using default values")
+            width=64
+            height=64
+            init_lives=3
+        if(width > 1000 or height > 1000 or init_lives > 1000):
+            print("Error: window dimensions and number of lives need to be below 1000")
+            print("Using default values")
+            width=64
+            height=64
+            init_lives=3
+
         base.PyGameWrapper.__init__(self, width, height, actions=actions)
 
         self.fruit_size = percent_round_int(height, 0.06)
