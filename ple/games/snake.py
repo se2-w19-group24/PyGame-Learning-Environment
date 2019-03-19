@@ -103,6 +103,7 @@ class SnakePlayer():
         self.length = length
         self.body = []
         self.update_head = True
+        assert length > 3, "Snake length must be more than 3"
 
         # build our body up
         for i in range(self.length):
